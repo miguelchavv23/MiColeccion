@@ -17,4 +17,8 @@
         <item>Guerra</item>
         <item>Deportes</item>
     </string-array>
+    <string name="error_titulo">El título es obligatorio (2–60 caracteres)</string>
+    <string name="error_categoria">Selecciona una categoría</string>
+    <string name="error_estado">Selecciona un estado</string>
+    <string name="validacion_ok">Datos válidos</string>
 </resources>
