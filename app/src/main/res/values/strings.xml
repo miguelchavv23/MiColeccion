@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">MiColeccion</string>
+    <string name="app_name">Mi Colección</string>
+
+    <string name="titulo_formulario">Nuevo elemento</string>
+    <string name="hint_titulo">Título</string>
+    <string name="etiqueta_categoria">Categoría</string>
+    <string name="etiqueta_estado">Estado</string>
+    <string name="estado_pendiente">Pendiente</string>
+    <string name="estado_completado">Completado</string>
+    <string name="favorito">Favorito</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <string-array name="categorias">
+        <item>Selecciona…</item>
+        <item>Aventura</item>
+        <item>Guerra</item>
+        <item>Deportes</item>
+    </string-array>
 </resources>
