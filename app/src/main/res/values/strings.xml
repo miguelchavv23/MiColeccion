@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Mi Colección</string>
 
+    <!-- Formulario -->
     <string name="titulo_formulario">Nuevo elemento</string>
     <string name="hint_titulo">Título</string>
     <string name="etiqueta_categoria">Categoría</string>
@@ -17,10 +18,28 @@
         <item>Guerra</item>
         <item>Deportes</item>
     </string-array>
+
+    <!-- Validaciones del formulario -->
     <string name="error_titulo">El título es obligatorio (2–60 caracteres)</string>
     <string name="error_categoria">Selecciona una categoría</string>
     <string name="error_estado">Selecciona un estado</string>
     <string name="validacion_ok">Datos válidos</string>
+
+    <!-- Listado -->
     <string name="sin_elementos">Aún no hay elementos</string>
     <string name="simbolo_favorito">★</string>
+    <string name="boton_nuevo">Nuevo</string>
+    <string name="boton_ajustes">Ajustes</string>
+    <string name="editando_elemento">Editando elemento %1$d</string>
+
+    <!-- Ajustes -->
+    <string name="ajustes_titulo">Ajustes</string>
+    <string name="hint_nombre">Nombre de usuario</string>
+    <string name="solo_favoritos">Mostrar solo favoritos</string>
+    <string name="error_nombre">El nombre debe tener 2–30 caracteres, sin espacios al principio ni al final</string>
+    <string name="ajustes_guardados">Ajustes guardados</string>
+    <string name="titulo_con_usuario">Colección de %1$s</string>
+
+    <string name="error_duplicado">Ya existe un elemento con ese título</string>
+    <string name="elemento_guardado">Elemento guardado</string>
 </resources>

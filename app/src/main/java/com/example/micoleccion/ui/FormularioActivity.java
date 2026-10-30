@@ -12,8 +12,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.micoleccion.R;
+import com.example.micoleccion.datos.BaseDatos;
+import com.example.micoleccion.modelo.Elemento;
 
 public class FormularioActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static final String EXTRA_ID = "id";
 
     private EditText etTitulo;
     private Spinner spCategoria;
@@ -21,6 +25,9 @@ public class FormularioActivity extends AppCompatActivity implements View.OnClic
     private CheckBox cbFavorito;
     private Button btnGuardar;
     private Button btnCancelar;
+
+    private BaseDatos bd;
+    private int idRecibido = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +41,16 @@ public class FormularioActivity extends AppCompatActivity implements View.OnClic
         btnGuardar = findViewById(R.id.btnGuardar);
         btnCancelar = findViewById(R.id.btnCancelar);
 
+        bd = new BaseDatos(this);
+
         btnGuardar.setOnClickListener(this);
         btnCancelar.setOnClickListener(this);
+
+        idRecibido = getIntent().getIntExtra(EXTRA_ID, -1);
+        if (idRecibido != -1) {
+            Toast.makeText(this, getString(R.string.editando_elemento, idRecibido),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -52,8 +67,25 @@ public class FormularioActivity extends AppCompatActivity implements View.OnClic
         if (!validar()) {
             return;
         }
-        // Más adelante aquí se guardará en SQLite
-        Toast.makeText(this, R.string.validacion_ok, Toast.LENGTH_SHORT).show();
+
+        String titulo = etTitulo.getText().toString().trim();
+
+        if (bd.existeTitulo(titulo, idRecibido)) {
+            etTitulo.setError(getString(R.string.error_duplicado));
+            return;
+        }
+
+        String categoria = spCategoria.getSelectedItem().toString();
+        String estado = rgEstado.getCheckedRadioButtonId() == R.id.rbPendiente
+                ? getString(R.string.estado_pendiente)
+                : getString(R.string.estado_completado);
+        int favorito = cbFavorito.isChecked() ? 1 : 0;
+
+        // La edición de un elemento existente se programa en el siguiente paso
+        bd.insertar(new Elemento(0, titulo, categoria, estado, favorito));
+
+        Toast.makeText(this, R.string.elemento_guardado, Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     private boolean validar() {

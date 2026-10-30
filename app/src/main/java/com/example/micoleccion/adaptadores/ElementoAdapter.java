@@ -1,4 +1,5 @@
 package com.example.micoleccion.adaptadores;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,16 @@ import java.util.List;
 
 public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.ElementoViewHolder> {
 
-    private List<Elemento> lista;
+    public interface OnItemClickListener {
+        void onItemClick(Elemento elemento);
+    }
 
-    public ElementoAdapter(List<Elemento> lista) {
+    private List<Elemento> lista;
+    private OnItemClickListener listener;
+
+    public ElementoAdapter(List<Elemento> lista, OnItemClickListener listener) {
         this.lista = lista;
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,6 +41,7 @@ public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.Elemen
         holder.tvTitulo.setText(e.getTitulo());
         holder.tvCategoriaEstado.setText(e.getCategoria() + " · " + e.getEstado());
         holder.tvFavorito.setVisibility(e.getFavorito() == 1 ? View.VISIBLE : View.GONE);
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(e));
     }
 
     @Override
