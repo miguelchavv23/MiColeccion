@@ -42,4 +42,14 @@
 
     <string name="error_duplicado">Ya existe un elemento con ese título</string>
     <string name="elemento_guardado">Elemento guardado</string>
+
+    <string name="titulo_editar">Editar elemento</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="confirmar_titulo">Eliminar elemento</string>
+    <string name="confirmar_mensaje">¿Seguro que quieres eliminar este elemento?</string>
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="elemento_actualizado">Elemento actualizado</string>
+    <string name="elemento_eliminado">Elemento eliminado</string>
+    <string name="error_no_encontrado">No se ha encontrado el elemento</string>
 </resources>

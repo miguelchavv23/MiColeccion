@@ -70,6 +70,47 @@ public class BaseDatos extends SQLiteOpenHelper {
         return lista;
     }
 
+    public Elemento obtener(int id) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query(TABLA, null, "id = ?",
+                new String[]{String.valueOf(id)}, null, null, null);
+        Elemento resultado = null;
+        try {
+            if (c.moveToFirst()) {
+                resultado = new Elemento(
+                        c.getInt(c.getColumnIndexOrThrow("id")),
+                        c.getString(c.getColumnIndexOrThrow("titulo")),
+                        c.getString(c.getColumnIndexOrThrow("categoria")),
+                        c.getString(c.getColumnIndexOrThrow("estado")),
+                        c.getInt(c.getColumnIndexOrThrow("favorito")));
+            }
+        } finally {
+            c.close();
+            db.close();
+        }
+        return resultado;
+    }
+
+    public int actualizar(Elemento e) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("titulo", e.getTitulo());
+        valores.put("categoria", e.getCategoria());
+        valores.put("estado", e.getEstado());
+        valores.put("favorito", e.getFavorito());
+        int filas = db.update(TABLA, valores, "id = ?",
+                new String[]{String.valueOf(e.getId())});
+        db.close();
+        return filas;
+    }
+
+    public int borrar(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+        int filas = db.delete(TABLA, "id = ?", new String[]{String.valueOf(id)});
+        db.close();
+        return filas;
+    }
+
     // Devuelve true si ya existe un título igual (sin distinguir mayúsculas),
     // ignorando el elemento con id = excluirId (para cuando se edite)
     public boolean existeTitulo(String titulo, int excluirId) {
