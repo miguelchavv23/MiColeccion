@@ -21,4 +21,6 @@
     <string name="error_categoria">Selecciona una categoría</string>
     <string name="error_estado">Selecciona un estado</string>
     <string name="validacion_ok">Datos válidos</string>
+    <string name="sin_elementos">Aún no hay elementos</string>
+    <string name="simbolo_favorito">★</string>
 </resources>
